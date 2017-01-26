@@ -19,15 +19,17 @@ training_set[, 1:2] = scale(training_set[, 1:2])
 test_set[, 1:2] = scale(test_set[, 1:2])
 
 # Fitting Logistic Regression to the Training set
+# use binomial family to specify this is logistic regression
 classifier = glm(formula = Purchased ~ .,
                  family = binomial,
                  data = training_set)
 
-# Predicting the Test set results
+# Predicting the Test set results from test set observations (i.e. columns 1 and 2 but not column 3)
 prob_pred = predict(classifier, type = 'response', newdata = test_set[-3])
+# predict a 1 (Purchase is made) if probabily greater than 0.5, or predict 0 otherwise
 y_pred = ifelse(prob_pred > 0.5, 1, 0)
 
-# Making the Confusion Matrix
+# Making the Confusion Matrix, which the table function will make given the observed and predicted values for dependent variable
 cm = table(test_set[, 3], y_pred)
 
 # Visualising the Training set results
@@ -45,7 +47,9 @@ set = training_set
 X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
 X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
 grid_set = expand.grid(X1, X2)
+#grid_set is now a matrix that represents the grid, next line gives it column names
 colnames(grid_set) = c('Age', 'EstimatedSalary')
+#now create predictions for each pixel (grid-point)
 prob_set = predict(classifier, type = 'response', newdata = grid_set)
 y_grid = ifelse(prob_set > 0.5, 1, 0)
 #create the scatter plot, with labels using all the columns except third (i.e. columns 1 and 2)
