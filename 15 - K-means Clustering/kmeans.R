@@ -4,7 +4,7 @@
 dataset = read.csv('Mall_Customers.csv')
 dataset = dataset[4:5]
 
-# Splitting the dataset into the Training set and Test set
+# No test and training split as this is unsupervised learning, we don't have labels
 # install.packages('caTools')
 # library(caTools)
 # set.seed(123)
@@ -12,7 +12,7 @@ dataset = dataset[4:5]
 # training_set = subset(dataset, split == TRUE)
 # test_set = subset(dataset, split == FALSE)
 
-# Feature Scaling
+# No Feature Scaling as library does it
 # training_set = scale(training_set)
 # test_set = scale(test_set)
 

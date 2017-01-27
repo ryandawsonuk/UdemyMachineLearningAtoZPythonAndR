@@ -6,15 +6,16 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
+# we are only using two variables from the data - the last two columns Annual Income and Spending Score
 dataset = pd.read_csv('Mall_Customers.csv')
 X = dataset.iloc[:, [3, 4]].values
 # y = dataset.iloc[:, 3].values
 
-# Splitting the dataset into the Training set and Test set
+# No test and training split as this is unsupervised learning, we don't have labels
 """from sklearn.cross_validation import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)"""
 
-# Feature Scaling
+# No Feature Scaling as library does it
 """from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
 X_train = sc_X.fit_transform(X_train)
@@ -23,6 +24,8 @@ sc_y = StandardScaler()
 y_train = sc_y.fit_transform(y_train)"""
 
 # Using the elbow method to find the optimal number of clusters
+# so need to record wcss for each iteration (each option for number of clusters)
+# inertia is another name for wcss
 from sklearn.cluster import KMeans
 wcss = []
 for i in range(1, 11):
@@ -36,11 +39,13 @@ plt.ylabel('WCSS')
 plt.show()
 
 # Fitting K-Means to the dataset
+# 5 cluseters were chosen by inspection of the above-drawn graph
 kmeans = KMeans(n_clusters = 5, init = 'k-means++', random_state = 42)
 y_kmeans = kmeans.fit_predict(X)
 
 # Visualising the clusters
-plt.scatter(X[y_kmeans == 0, 0], X[y_kmeans == 0, 1], s = 100, c = 'red', label = 'Cluster 1')
+#s is size
+plt.scatter(X[y_kmeans == 0, 0], X[y_kmeans == 0, 1], s = 100, c = 'red', label = 'Cluster 1') 
 plt.scatter(X[y_kmeans == 1, 0], X[y_kmeans == 1, 1], s = 100, c = 'blue', label = 'Cluster 2')
 plt.scatter(X[y_kmeans == 2, 0], X[y_kmeans == 2, 1], s = 100, c = 'green', label = 'Cluster 3')
 plt.scatter(X[y_kmeans == 3, 0], X[y_kmeans == 3, 1], s = 100, c = 'cyan', label = 'Cluster 4')
@@ -51,3 +56,9 @@ plt.xlabel('Annual Income (k$)')
 plt.ylabel('Spending Score (1-100)')
 plt.legend()
 plt.show()
+
+#cluster 1 might be called careful high income and low spending score
+#cluster 2 is middle income and middle spend
+#cluster 3 is high income and high spend
+#cluster 4 is low income high spend
+#cluster 5 is low income low spend
