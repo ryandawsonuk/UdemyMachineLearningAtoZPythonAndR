@@ -6,21 +6,30 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 # Importing the dataset
+#quoting=3 means ignore double-quotes
 dataset = pd.read_csv('Restaurant_Reviews.tsv', delimiter = '\t', quoting = 3)
 
 # Cleaning the texts
 import re
 import nltk
+#we want to download stopwords from nltk as we use it to remove non-relevant words
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 corpus = []
+#run through each review and clean
 for i in range(0, 1000):
+	#remove any punctuation or numbers and substitute with spaces - just keep letters
     review = re.sub('[^a-zA-Z]', ' ', dataset['Review'][i])
+	#make all letters lowercase
     review = review.lower()
+	#turn review into a split out list of words rather than one big string
     review = review.split()
+	#remove the words like connector words using stopwords - i.e. trim to only words not in english stopwords
+	#at the same time we apply stemming to shorten words like 'loved' down to root 'love'
     ps = PorterStemmer()
     review = [ps.stem(word) for word in review if not word in set(stopwords.words('english'))]
+	# join the list back into a single string, sepearated by spaces
     review = ' '.join(review)
     corpus.append(review)
 
