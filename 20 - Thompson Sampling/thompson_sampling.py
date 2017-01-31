@@ -13,6 +13,8 @@ import random
 N = 10000
 d = 10
 ads_selected = []
+
+#counts of 1-rewards and 0-rewards for each ad
 numbers_of_rewards_1 = [0] * d
 numbers_of_rewards_0 = [0] * d
 total_reward = 0
@@ -20,7 +22,9 @@ for n in range(0, N):
     ad = 0
     max_random = 0
     for i in range(0, d):
+		#make a draw from the ad's beta distribution
         random_beta = random.betavariate(numbers_of_rewards_1[i] + 1, numbers_of_rewards_0[i] + 1)
+		#choose ad with highest value as selected from its beta distribution
         if random_beta > max_random:
             max_random = random_beta
             ad = i

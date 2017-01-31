@@ -88,3 +88,23 @@ Also included is a comparison of different classifiers.
 With clustering we want to break data into groups but we don't have any information on correct categories. We're just looking for likeness.
 
 This example illustrates clustering with K-means.
+
+## 16 Hierarchical Clustering
+
+Clustering by repeatedly forming clusters until there's only one and then choosing number of clusters by working back off the data recorded in a dendrogram. Also included is a comparison of different clustering techniques.
+
+## 17 A Priori Association Rule Learning
+
+Example for learning association rules and inspecting results. The example is a market basket situation based upon a store in the south of France.
+
+## 18 Eclat for Association Rules
+
+This example just gives a way of seeing items most frequently purchased together.
+
+## 19 Upper Confidence Bound Reinforcement Learning
+
+Example of reinforcement learning to maximise click-through rate on advert selection. Uses dummy data file to mock user selections. 
+
+## 20 Thompson Sampling Reinforcement Learning
+
+Thompson sampling applied to the same problem as the UCB example.
