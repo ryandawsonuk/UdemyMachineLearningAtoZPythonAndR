@@ -16,6 +16,7 @@ import nltk
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
+#corpus is the list of all cleaned reviews
 corpus = []
 #run through each review and clean
 for i in range(0, 1000):
@@ -34,9 +35,15 @@ for i in range(0, 1000):
     corpus.append(review)
 
 # Creating the Bag of Words model
+# each distinct word is transformed into a column and given a numeric value for number of occurrences in a review
+# actually a sparse matrix as most columns would be zero
+# CountVectorizer is designed to extract words and transform their counts into features in a sparse matrix
+# setting max_features so that most words (1565 total) are kept but some of the least-frequent words get cut
 from sklearn.feature_extraction.text import CountVectorizer
 cv = CountVectorizer(max_features = 1500)
 X = cv.fit_transform(corpus).toarray()
+# now we have feature matrix, also need target variable
+# can just take this from column of original dataset as it is in the same row ordering as feature matrix
 y = dataset.iloc[:, 1].values
 
 # Splitting the dataset into the Training set and Test set

@@ -108,3 +108,7 @@ Example of reinforcement learning to maximise click-through rate on advert selec
 ## 20 Thompson Sampling Reinforcement Learning
 
 Thompson sampling applied to the same problem as the UCB example.
+
+## 21 Natural Language Processing with Bag of Words Model
+
+Example of processing restaurant reviews and training a model based upon relevant words to decide whether a review is positive or negative.

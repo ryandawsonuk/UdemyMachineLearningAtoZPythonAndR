@@ -14,5 +14,6 @@ The bag of words model will decide based upon relevant words rather than neutral
 
 We employ stemming to unify different words that fall under the same root e.g. 'Love' and 'Loved'.
 
-The reviews get tokenised, meaning that they are broken into a collection of only relevant words so that a weighted model (a bag of words model) can be built around the reviews based on the frequency of occurrence of words in positive or negative reviews.
+The reviews get tokenised, meaning that they are broken into a collection of only relevant words so that a weighted model can be built around the reviews based on the frequency of occurrence of words in positive or negative reviews.
 
+Once the reviews are tokenised in a bag of words model, the predictions can be made using a classification learning model. Typical classification models for NLP scenarios are Naive Bayes or Random Forest.
