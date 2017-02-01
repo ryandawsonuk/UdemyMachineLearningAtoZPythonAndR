@@ -40,8 +40,8 @@ test_set = subset(dataset, split == FALSE)
 
 # Fitting Random Forest Classification to the Training set
 # install.packages('randomForest')
-# have had to set number of features in code copied from the random forest example
-# number of features (distinct words considered) is 692
+# have had to adjust for not including target feature in code copied from the random forest example
+# number of columns (distinct words considered plus target feature of Liked) is 692
 library(randomForest)
 classifier = randomForest(x = training_set[-692],
                           y = training_set$Liked,
