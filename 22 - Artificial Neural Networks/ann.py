@@ -1,12 +1,20 @@
 # Artificial Neural Network
 
-# Installing Theano
+# Installing Theano to exploit parallel computations of processor
+# install from command prompt as admin
+#(open from spyder using Tools>Open Command Prompt but I found I needed to open prompt from OS to do as admin) 
+# (if you get a permission error try closing python as ith might be files are in use)
+# using following command
 # pip install --upgrade --no-deps git+git://github.com/Theano/Theano.git
 
-# Installing Tensorflow
+# Install Tensorflow as will be used by Keras - again run commands as admin
 # Install Tensorflow from the website: https://www.tensorflow.org/versions/r0.12/get_started/os_setup.html
+# the CPU version will be fine for this exercise
+# we are using anaconda and python 3.5 so will want the Anaconda Installation option
+# on windows I ran "conda create -n tensorflow python=3.5"
+# and "pip install --upgrade https://storage.googleapis.com/tensorflow/windows/cpu/tensorflow-0.12.1-cp35-cp35m-win_amd64.whl"
 
-# Installing Keras
+# Installing Keras, which will make use of Tensorflow
 # pip install --upgrade keras
 
 # Part 1 - Data Preprocessing
@@ -18,17 +26,21 @@ import pandas as pd
 
 # Importing the dataset
 dataset = pd.read_csv('Churn_Modelling.csv')
+#we skip first few columns as they are just identifiers that have no impact on y variable
 X = dataset.iloc[:, 3:13].values
 y = dataset.iloc[:, 13].values
 
 # Encoding categorical data
+# columns index 1 and 2 are country and gender
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 labelencoder_X_1 = LabelEncoder()
 X[:, 1] = labelencoder_X_1.fit_transform(X[:, 1])
 labelencoder_X_2 = LabelEncoder()
 X[:, 2] = labelencoder_X_2.fit_transform(X[:, 2])
+#only need to do onehotencoding if more than two values so just country and not gender
 onehotencoder = OneHotEncoder(categorical_features = [1])
 X = onehotencoder.fit_transform(X).toarray()
+#and we remove one of the columns the onehotencoding because it can be derived (avoiding the dummy variable trap)
 X = X[:, 1:]
 
 # Splitting the dataset into the Training set and Test set

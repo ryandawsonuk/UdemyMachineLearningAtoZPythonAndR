@@ -112,3 +112,9 @@ Thompson sampling applied to the same problem as the UCB example.
 ## 21 Natural Language Processing with Bag of Words Model
 
 Example of processing restaurant reviews and training a model based upon relevant words to decide whether a review is positive or negative.
+
+## 22 Artificial Neural Networks
+
+The example data set represents customers of a bank. The bank has seen unusually large numbers of customers closing accounts (high churn) and wants to see why. 
+
+An artificial neural network model is built to predict whether a customer is likely to leave the bank using.
