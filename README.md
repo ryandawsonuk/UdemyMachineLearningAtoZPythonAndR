@@ -118,3 +118,11 @@ Example of processing restaurant reviews and training a model based upon relevan
 The example data set represents customers of a bank. The bank has seen unusually large numbers of customers closing accounts (high churn) and wants to see why. 
 
 An artificial neural network model is built to predict whether a customer is likely to leave the bank.
+
+## 23 Convolutional Neural Networks
+
+## 24 Principal Component Analysis (PCA)
+
+
+
+## 25 Linear Discriminant Analysis (LDA)
