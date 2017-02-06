@@ -1,6 +1,7 @@
 # Artificial Neural Network
 
 # Importing the dataset
+#we skip first few columns as they are just identifiers that have no impact on y variable
 dataset = read.csv('Churn_Modelling.csv')
 dataset = dataset[4:14]
 
@@ -26,8 +27,17 @@ test_set[-11] = scale(test_set[-11])
 
 # Fitting ANN to the Training set
 # install.packages('h2o')
+# using h2o over pluralnet, nnet or deepnet
+# pluralnet would only do regressors and we need classifier and nnet only support 1 hidden layer
+# h20 is open source and can use parallelism and supports convenient parameter tuning
 library(h2o)
+# unlimited threads/cores
 h2o.init(nthreads = -1)
+
+#as.h2o converts the data set into an h2o data frame
+#2 hidden layers, 6 nodes in each hidden layer (6 is based on average of nodes in input and output layers)
+#h2o knows number of input and output nodes because we told it y and training_frame
+#the -2 value for train_samples_per_iteration means auto-tune batch size
 classifier = h2o.deeplearning(y = 'Exited',
                               training_frame = as.h2o(training_set),
                               activation = 'Rectifier',
